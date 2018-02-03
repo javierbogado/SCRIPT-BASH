@@ -116,7 +116,11 @@ function start_container(){
 if [[ $option_s =~ ^[0-9](,[0-9])*$ ]]; then
 	if [[ $option_s = 0 ]]; then
 		for i in ${!option[*]}; do
-			option_s="$i,$option_s" 
+			if [[ $i = 1 ]]; then
+				option_s=$i
+			else
+				option_s="$i,$option_s"
+			fi 
 		done
 	fi
 	echo 'Opciones seleccionadas: ' $option_s
