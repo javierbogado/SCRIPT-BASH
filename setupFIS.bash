@@ -9,6 +9,8 @@ option[3]='Client'
 option[4]='Entity'
 option[5]='Mov'
 option[6]='Parametrizer'
+option[7]='ImpCliToGC'
+option[8]='ExpGCToEnt'
 
 port[1]='8301'
 port[2]='8304'
@@ -16,6 +18,9 @@ port[3]='8302'
 port[4]='8303'
 port[5]='8306'
 port[6]='8305'
+port[7]='8307'
+port[8]='8308'
+
 
 folder[1]='gestion-compartida-authenticator'
 folder[2]='gestion-compartida-rest-user'
@@ -23,6 +28,8 @@ folder[3]='gestion-compartida-rest-client'
 folder[4]='gestion-compartida-rest-entity'
 folder[5]='gestion-compartida-mov'
 folder[6]='gestion-compartida-parametrizer'
+folder[7]='gestion-compartida-ftp'
+folder[8]='gestion-compartida-export'
 
 echo '******************************************************************************************'
 echo '***** FISCKER v0.1 ***********************************************************************'
@@ -116,11 +123,11 @@ function start_container(){
 if [[ $option_s =~ ^[0-9](,[0-9])*$ ]]; then
 	if [[ $option_s = 0 ]]; then
 		for i in ${!option[*]}; do
-			if [[ $i = 1 ]]; then
-				option_s=$i
-			else
-				option_s="$i,$option_s"
-			fi 
+			if [[ $i == 1 ]]; then
+				option_s=1
+			else	
+				option_s="$option_s,$i" 
+			fi	
 		done
 	fi
 	echo 'Opciones seleccionadas: ' $option_s
